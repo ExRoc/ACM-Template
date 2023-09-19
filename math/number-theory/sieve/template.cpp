@@ -34,4 +34,22 @@ struct Sieve {
             }
         }
     }
+
+    vector<pair<int, int>> getPrimeFactor(int n) {
+        vector<pair<int, int>> result;
+        for (int i = 1; i <= cnt && prime[i] <= n / prime[i]; ++i) {
+            if (n % prime[i] == 0) {
+                int k = 0;
+                while (n % prime[i] == 0) {
+                    n /= prime[i];
+                    ++k;
+                }
+                result.push_back({prime[i], k});
+            }
+        }
+        if (n != 1) {
+            result.push_back({n, 1});
+        }
+        return result;
+    }
 };
