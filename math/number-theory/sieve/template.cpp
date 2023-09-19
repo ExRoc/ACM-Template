@@ -1,13 +1,11 @@
 template<int MAX_SIZE>
-class Sieve {
-private:
+struct Sieve {
     int cnt;
     int phi[MAX_SIZE + 1];
     int prime[MAX_SIZE + 1];
     int mobius[MAX_SIZE + 1];
     bool isPrime[MAX_SIZE + 1];
 
-public:
     Sieve() {
         cnt = 0;
         isPrime[0] = isPrime[1] = false;
