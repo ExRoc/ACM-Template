@@ -41,8 +41,8 @@ struct Sieve {
         }
     }
 
-    vector<pair<int, int>> getPrimeFactor(int n) {
-        vector<pair<int, int>> result;
+    vector<pair<long long, int>> getPrimeFactor(long long n) {
+        vector<pair<long long, int>> result;
         for (int i = 1; i <= cnt && prime[i] <= n / prime[i]; ++i) {
             if (n % prime[i] == 0) {
                 int k = 0;
@@ -58,13 +58,32 @@ struct Sieve {
         }
         return result;
     }
+
+    long long getPhi(long long n) {
+        if (n <= MAX_SIZE) {
+            return phi[n];
+        }
+        long long ret = n;
+        for (int i = 1; i <= cnt && prime[i] <= n / prime[i]; ++i) {
+            if (n % prime[i] == 0) {
+                ret = ret / prime[i] * (prime[i] - 1);
+                while (n % prime[i] == 0) {
+                    n /= prime[i];
+                }
+            }
+        }
+        if (n != 1) {
+            ret = ret / n * (n - 1);
+        }
+        return ret;
+    }
 };
 
 int T, q;
 LL p, ans;
 Sieve<maxn> sieve;
 
-LL solve(LL p, const pair<int, int> &pr) {
+LL solve(LL p, const pair<LL, int> &pr) {
     while (p % pr.first == 0) {
         p /= pr.first;
     }
@@ -88,8 +107,8 @@ int main() {
             continue;
         }
         ans = 1;
-        vector<pair<int, int>> result = sieve.getPrimeFactor(q);
-        for (pair<int, int> &pr: result) {
+        vector<pair<LL, int>> result = sieve.getPrimeFactor(q);
+        for (pair<LL, int> &pr: result) {
             ans = max(ans, solve(p, pr));
         }
         cout << ans << endl;
