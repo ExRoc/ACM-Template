@@ -35,8 +35,8 @@ struct Sieve {
         }
     }
 
-    vector<pair<int, int>> getPrimeFactor(int n) {
-        vector<pair<int, int>> result;
+    vector<pair<long long, int>> getPrimeFactor(long long n) {
+        vector<pair<long long, int>> result;
         for (int i = 1; i <= cnt && prime[i] <= n / prime[i]; ++i) {
             if (n % prime[i] == 0) {
                 int k = 0;
@@ -51,5 +51,24 @@ struct Sieve {
             result.push_back({n, 1});
         }
         return result;
+    }
+
+    long long getPhi(long long n) {
+        if (n <= MAX_SIZE) {
+            return phi[n];
+        }
+        long long ret = n;
+        for (int i = 1; i <= cnt && prime[i] <= n / prime[i]; ++i) {
+            if (n % prime[i] == 0) {
+                ret = ret / prime[i] * (prime[i] - 1);
+                while (n % prime[i] == 0) {
+                    n /= prime[i];
+                }
+            }
+        }
+        if (n != 1) {
+            ret = ret / n * (n - 1);
+        }
+        return ret;
     }
 };
