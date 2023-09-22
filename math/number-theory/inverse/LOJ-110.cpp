@@ -35,7 +35,7 @@ private:
     long long getInvByExgcd(long long n, long long mod) {
         long long x, y;
         exgcd(n, mod, x, y);
-        return x;
+        return (x % mod + mod) % mod;
     }
 
 public:
