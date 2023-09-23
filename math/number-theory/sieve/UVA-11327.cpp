@@ -1,8 +1,6 @@
+// https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302
 #include <bits/stdc++.h>
 using namespace std;
-
-typedef long long LL;
-const int maxn = 200000 + 100;
 
 template<int MAX_SIZE>
 struct Sieve {
@@ -79,6 +77,8 @@ struct Sieve {
     }
 };
 
+typedef long long LL;
+const int maxn = 200000 + 100;
 LL th;
 LL sum[maxn];
 Sieve<maxn> s;

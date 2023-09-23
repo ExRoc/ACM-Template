@@ -1,20 +1,22 @@
+// https://www.spoj.com/problems/ZSUM/
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long LL;
-const int MOD = 1e7 + 7;
-int n, k;
-
 long long fastPow(long long res, long long n, long long mod) {
-	long long ans;
-	for (ans = 1; n != 0; n >>= 1) {
+	long long ans = 1;
+	while (n != 0) {
 		if ((n & 1) == 1) {
 			ans = ans * res % mod;
 		}
 		res = res * res % mod;
+		n >>= 1;
 	}
 	return ans % mod;
 }
+
+typedef long long LL;
+const int MOD = 1e7 + 7;
+int n, k;
 
 int fp(int a, int b) {
     return fastPow(a, b, MOD);

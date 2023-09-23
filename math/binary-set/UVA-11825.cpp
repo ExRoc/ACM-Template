@@ -1,23 +1,24 @@
+// https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925
 #include <bits/stdc++.h>
 using namespace std;
+
+int lowbit(int x) {
+    return x & -x;
+}
+
+int nextSameHammingWeightNumber(int x) {
+    int t = x + lowbit(x);
+    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
+}
+
+int nextSubMask(int subMask, int mask) {
+    return (subMask - 1) & mask;
+}
 
 typedef long long LL;
 const int maxn = 16;
 int n, l, x, cas;
 int bits[1 << maxn], dp[1 << maxn];
-
-inline int lowbit(int x) {
-    return x & -x;
-}
-
-inline int nextSameHammingWeightNumber(int x) {
-    int t = x + lowbit(x);
-    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
-}
-
-inline int nextSubMask(int subMask, int mask) {
-	return (subMask - 1) & mask;
-}
 
 int main() {
     #ifdef ExRoc

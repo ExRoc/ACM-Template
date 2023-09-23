@@ -1,21 +1,23 @@
+// https://www.spoj.com/problems/LOCKER/
 #include <bits/stdc++.h>
 using namespace std;
+
+long long fastPow(long long res, long long n, long long mod) {
+	long long ans = 1;
+	while (n != 0) {
+		if ((n & 1) == 1) {
+			ans = ans * res % mod;
+		}
+		res = res * res % mod;
+		n >>= 1;
+	}
+	return ans % mod;
+}
 
 typedef long long LL;
 const int MOD = 1e9 + 7;
 int T;
 LL n;
-
-long long fastPow(long long res, long long n, long long mod) {
-    long long ans;
-    for (ans = 1; n != 0; n >>= 1) {
-        if ((n & 1) == 1) {
-            ans = ans * res % mod;
-        }
-        res = res * res % mod;
-    }
-    return ans % mod;
-}
 
 int main() {
 #ifdef ExRoc

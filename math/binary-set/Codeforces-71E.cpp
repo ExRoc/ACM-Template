@@ -1,5 +1,19 @@
+// https://codeforces.com/problemset/problem/71/E
 #include <bits/stdc++.h>
 using namespace std;
+
+int lowbit(int x) {
+    return x & -x;
+}
+
+int nextSameHammingWeightNumber(int x) {
+    int t = x + lowbit(x);
+    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
+}
+
+int nextSubMask(int subMask, int mask) {
+    return (subMask - 1) & mask;
+}
 
 typedef long long LL;
 const int maxn = 17;
@@ -28,19 +42,6 @@ string element[101] = {
         "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm",
         "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn",
         "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm"};
-
-inline int lowbit(int x) {
-    return x & -x;
-}
-
-inline int nextSameHammingWeightNumber(int x) {
-    int t = x + lowbit(x);
-    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
-}
-
-inline int nextSubMask(int subMask, int mask) {
-	return (subMask - 1) & mask;
-}
 
 void print(int status) {
     int sstatus = status;

@@ -1,8 +1,6 @@
+// https://codeforces.com/contest/1445/problem/C
 #include <bits/stdc++.h>
 using namespace std;
-
-typedef long long LL;
-const int maxn = 100000 + 100;
 
 template<int MAX_SIZE>
 struct Sieve {
@@ -79,6 +77,8 @@ struct Sieve {
     }
 };
 
+typedef long long LL;
+const int maxn = 100000 + 100;
 int T, q;
 LL p, ans;
 Sieve<maxn> sieve;

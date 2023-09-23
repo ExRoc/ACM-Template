@@ -1,7 +1,3 @@
-// https://www.luogu.com.cn/problem/U161288
-#include <bits/stdc++.h>
-using namespace std;
-
 class Prime {
 private:
 	static long long fastPow(long long res, long long n, long long mod) {
@@ -90,20 +86,3 @@ public:
         return true;
     }
 };
-
-int main() {
-    #ifdef ExRoc
-    freopen("test.txt", "r", stdin);
-    #endif // ExRoc
-    ios::sync_with_stdio(false);
-
-    int T;
-    long long a;
-    cin >> T;
-    while (T--) {
-        cin >> a;
-        cout << (Prime::isPrimeLL(a)? "YES": "NO") << endl;
-    }
-
-    return 0;
-}

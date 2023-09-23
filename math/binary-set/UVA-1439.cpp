@@ -1,5 +1,19 @@
+// https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185
 #include <bits/stdc++.h>
 using namespace std;
+
+int lowbit(int x) {
+    return x & -x;
+}
+
+int nextSameHammingWeightNumber(int x) {
+    int t = x + lowbit(x);
+    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
+}
+
+int nextSubMask(int subMask, int mask) {
+    return (subMask - 1) & mask;
+}
 
 typedef long long LL;
 const int maxn = 15;
@@ -25,19 +39,6 @@ pair<int, int> p[100];
 char rid[maxn];
 unordered_map<char, int> id;
 unordered_map<char, int>::iterator it;
-
-inline int lowbit(int x) {
-    return x & -x;
-}
-
-inline int nextSameHammingWeightNumber(int x) {
-    int t = x + lowbit(x);
-    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
-}
-
-inline int nextSubMask(int subMask, int mask) {
-	return (subMask - 1) & mask;
-}
 
 void init() {
     id.clear();

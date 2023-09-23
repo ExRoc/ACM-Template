@@ -1,7 +1,3 @@
-// https://www.luogu.com.cn/problem/P2054
-#include <bits/stdc++.h>
-using namespace std;
-
 template<int MAXN = 1, long long MOD = 1>
 class Inverse {
 private:
@@ -73,44 +69,3 @@ public:
         return (x % mod + mod) % mod;
     }
 };
-
-long long multLL(long long a, long long b, long long mod) {
-	unsigned long long c = (unsigned long long) a * b -
-						(unsigned long long)((long double) a / mod * b + 0.5) * mod;
-	if (c < mod) {
-		return c;
-	}
-	return c + mod;
-}
-
-long long fastPowLL(long long res, long long n, long long mod) {
-	long long ans = 1;
-	while (n != 0) {
-		if ((n & 1) == 1) {
-			ans = multLL(ans, res, mod);
-		}
-		res = multLL(res, res, mod);
-		n >>= 1;
-	}
-	return ans % mod;
-}
-
-typedef long long LL;
-LL n, m, l;
-Inverse<> inverse;
-
-int main() {
-#ifdef ExRoc
-    freopen("test.txt", "r", stdin);
-#endif // ExRoc
-    ios::sync_with_stdio(false);
-
-    cin >> n >> m >> l;
-    inverse.resetMod(n + 1);
-    LL two = inverse.getInv(2);
-    two = fastPowLL(two, m, n + 1);
-    LL ans = multLL(l, two, n + 1);
-    cout << ans << endl;
-
-    return 0;
-}

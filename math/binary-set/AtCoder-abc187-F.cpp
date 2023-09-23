@@ -1,24 +1,25 @@
+// https://atcoder.jp/contests/abc187/tasks/abc187_f
 #include <bits/stdc++.h>
 using namespace std;
+
+int lowbit(int x) {
+    return x & -x;
+}
+
+int nextSameHammingWeightNumber(int x) {
+    int t = x + lowbit(x);
+    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
+}
+
+int nextSubMask(int subMask, int mask) {
+    return (subMask - 1) & mask;
+}
 
 typedef long long LL;
 const int maxn = 18;
 int n, m, a, b;
 int dp[1 << maxn];
 bool G[maxn][maxn];
-
-inline int lowbit(int x) {
-    return x & -x;
-}
-
-inline int nextSameHammingWeightNumber(int x) {
-    int t = x + lowbit(x);
-    return t | (((lowbit(t) / lowbit(x)) >> 1) - 1);
-}
-
-inline int nextSubMask(int subMask, int mask) {
-	return (subMask - 1) & mask;
-}
 
 bool judge(int status) {
     if (__builtin_popcount(status) == 1) {
