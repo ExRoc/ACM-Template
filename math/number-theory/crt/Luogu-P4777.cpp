@@ -8,6 +8,7 @@ private:
         a ^= b ^= a ^= b;
     }
 
+public:
     static long long exgcd(long long a, long long b, long long &x, long long &y) {
         if (b == 0) {
             x = 1;
@@ -21,7 +22,6 @@ private:
         return gcd;
     }
 
-public:
     static long long solve(long long *r, long long *m, int n, long long &lcm) {
         long long r0 = 0, m0 = 1;
         for (int i = 0; i < n; i++) {
