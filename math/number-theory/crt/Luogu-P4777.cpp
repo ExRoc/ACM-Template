@@ -1,4 +1,4 @@
-// https://www.luogu.com.cn/problem/P1495
+// https://www.luogu.com.cn/problem/P4777
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -58,9 +58,9 @@ public:
 };
 
 typedef long long LL;
-const int maxn = 100;
+const int maxn = 100000 + 100;
 int n;
-long long a[maxn], b[maxn];
+LL a[maxn], b[maxn];
 
 int main() {
 #ifdef ExRoc
@@ -68,6 +68,7 @@ int main() {
 #endif // ExRoc
     ios::sync_with_stdio(false);
 
+    int n;
     cin >> n;
     for (int i = 0; i < n; ++i) {
         cin >> a[i] >> b[i];
