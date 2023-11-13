@@ -1,4 +1,3 @@
-
 class ExLucas {
 private:
     static void swap(long long& a, long long& b) {
@@ -89,38 +88,39 @@ private:
         return r0;
     }
 
-    static long long multilucas(long long m, long long n, long long x, long long mod) {
+    static long long multilucas(long long n, long long m, long long x, long long mod) {
         int cnt = 0;
-        for (long long i = m; i != 0; i /= x) {
+        for (long long i = n; i != 0; i /= x) {
             cnt += i / x;
         }
-        for (long long i = n; i != 0; i /= x) {
+        for (long long i = m; i != 0; i /= x) {
             cnt -= i / x;
         }
-        for (long long i = m - n; i != 0; i /= x) {
+        for (long long i = n - m; i != 0; i /= x) {
             cnt -= i / x;
         }
-        return fastPow(x, cnt, mod) % mod * calc(m, x, mod) % mod *
-               inv(calc(n, x, mod), mod) % mod * inv(calc(m - n, x, mod), mod) % mod;
+        return fastPow(x, cnt, mod) % mod * calc(n, x, mod) % mod *
+               inv(calc(m, x, mod), mod) % mod * inv(calc(n - m, x, mod), mod) % mod;
     }
 
 public:
-    static long long solve(long long m, long long n, long long mod) {
+    static long long solve(long long n, long long m, long long mod) {
         int cnt = 0;
         static long long p[20], a[20];
         for (long long i = 2; i * i <= mod; i++) {
             if (mod % i == 0) {
                 p[cnt] = 1;
                 while (mod % i == 0) {
-                    p[cnt] = p[cnt] * i, mod /= i;
+                    p[cnt] = p[cnt] * i;
+                    mod /= i;
                 }
-                a[cnt] = multilucas(m, n, i, p[cnt]);
+                a[cnt] = multilucas(n, m, i, p[cnt]);
                 ++cnt;
             }
         }
         if (mod > 1) {
             p[cnt] = mod;
-            a[cnt] = multilucas(m, n, mod, mod);
+            a[cnt] = multilucas(n, m, mod, mod);
             ++cnt;
         }
         long long lcm = 0;
