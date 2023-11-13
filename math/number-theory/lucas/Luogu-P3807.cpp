@@ -61,7 +61,6 @@ int main() {
         cin >> n >> m >> MOD;
         cout << lucas(n + m, m) << endl;
     }
-    
 
     return 0;
 }
