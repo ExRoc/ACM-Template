@@ -1,18 +1,6 @@
-// https://loj.ac/p/10229
+// https://www.luogu.com.cn/problem/P4720
 #include <bits/stdc++.h>
 using namespace std;
-
-long long fastPow(long long res, long long n, long long mod) {
-    long long ans = 1;
-    while (n != 0) {
-        if ((n & 1) == 1) {
-            ans = ans * res % mod;
-        }
-        res = res * res % mod;
-        n >>= 1;
-    }
-    return ans % mod;
-}
 
 class ExLucas {
 private:
@@ -37,6 +25,18 @@ private:
         long long x, y;
         exgcd(n, mod, x, y);
         return (x % mod + mod) % mod;
+    }
+
+    static long long fastPow(long long res, long long n, long long mod) {
+        long long ans = 1;
+        while (n != 0) {
+            if ((n & 1) == 1) {
+                ans = ans * res % mod;
+            }
+            res = res * res % mod;
+            n >>= 1;
+        }
+        return ans % mod;
     }
 
     static long long calc(long long n, long long x, long long mod) {
@@ -132,30 +132,16 @@ public:
 };
 
 typedef long long LL;
-const LL MOD = 999911659;
-LL N, G;
+LL n, m, p;
 
 int main() {
 #ifdef ExRoc
     freopen("test.txt", "r", stdin);
-#endif // ExRoc
+#endif  // ExRoc
     ios::sync_with_stdio(false);
 
-    cin >> N >> G;
-    LL ans = 0;
-    for (LL i = 1; i * i <= N; ++i) {
-        if (N % i == 0) {
-            ans += ExLucas::solve(N, i, MOD - 1);
-            ans %= (MOD - 1);
-            if (N / i != i) {
-                ans += ExLucas::solve(N, N / i, MOD - 1);
-                ans %= (MOD - 1);
-            }
-        }
-    }
-    ans += (MOD - 1);
-    ans = fastPow(G, ans, MOD);
-    cout << ans << endl;
+    cin >> n >> m >> p;
+    cout << ExLucas::solve(n, m, p) << endl;
 
     return 0;
 }

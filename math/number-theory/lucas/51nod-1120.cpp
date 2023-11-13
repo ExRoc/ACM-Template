@@ -1,4 +1,4 @@
-// https://loj.ac/p/10229
+// https://www.51nod.com/Challenge/Problem.html#problemId=1120
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -45,11 +45,11 @@ public:
         }
     }
 
-    long long lucas(long long n, long long m) {
+    long long solve(long long n, long long m) {
         if (m == 0) {
             return 1;
         }
-        return C(n % MOD, m % MOD) * lucas(n / MOD, m / MOD) % MOD;
+        return C(n % MOD, m % MOD) * solve(n / MOD, m / MOD) % MOD;
     }
 };
 
@@ -67,7 +67,7 @@ int main() {
 
     cin >> n;
     --n;
-    cout << (l.lucas(2 * n, n) - l.lucas(2 * n, n - 1) + MOD) % MOD * 2 % MOD << endl;
+    cout << (l.solve(2 * n, n) - l.solve(2 * n, n - 1) + MOD) % MOD * 2 % MOD << endl;
 
     return 0;
 }
